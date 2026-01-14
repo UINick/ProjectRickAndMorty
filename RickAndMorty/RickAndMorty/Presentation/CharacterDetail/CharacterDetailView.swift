@@ -9,7 +9,7 @@ struct CharacterDetailView: View {
 
     var body: some View {
         content
-            .navigationTitle("Detalhes")
+            .navigationTitle(Strings.CharacterDetail.title)
             .navigationBarTitleDisplayMode(.inline)
             .task { viewModel.load() }
     }
@@ -86,13 +86,13 @@ struct CharacterDetailView: View {
 
     private func infoSection(_ character: Character) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Informações")
+            Text(Strings.CharacterDetail.infoTitle)
                 .font(.headline)
-            InfoRow(title: "Status", value: character.status.displayName)
-            InfoRow(title: "Espécie", value: character.species)
-            InfoRow(title: "Gênero", value: character.gender)
-            InfoRow(title: "Origem", value: character.originName)
-            InfoRow(title: "Local", value: character.locationName)
+            InfoRow(title: Strings.CharacterDetail.statusTitle, value: character.status.displayName)
+            InfoRow(title: Strings.CharacterDetail.speciesTitle, value: character.species)
+            InfoRow(title: Strings.CharacterDetail.genderTitle, value: character.gender)
+            InfoRow(title: Strings.CharacterDetail.originTitle, value: character.originName)
+            InfoRow(title: Strings.CharacterDetail.locationTitle, value: character.locationName)
         }
         .padding()
         .background(.thinMaterial)
@@ -101,14 +101,14 @@ struct CharacterDetailView: View {
 
     private func episodesSection(_ character: Character) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Episódios")
+            Text(Strings.CharacterDetail.episodesTitle)
                 .font(.headline)
-            Text("\(character.episodeCount) episódio(s)")
+            Text(Strings.CharacterDetail.episodesCount(character.episodeCount))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
             if character.episodeURLs.isEmpty {
-                Text("Nenhuma URL disponível.")
+                Text(Strings.CharacterDetail.noEpisodeURLs)
                     .foregroundStyle(.secondary)
                     .font(.subheadline)
             } else {
@@ -120,14 +120,14 @@ struct CharacterDetailView: View {
                         .truncationMode(.middle)
                 }
                 if character.episodeURLs.count > 3 {
-                    Text("… e mais \(character.episodeURLs.count - 3)")
+                    Text(Strings.CharacterDetail.moreEpisodes(character.episodeURLs.count - 3))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
             }
         }
         .padding()
-        .background(.thinMaterial) // [TRADE-OFF] Mostramos apenas até 3 URLs para não poluir a UI; detalhamento completo pode ir para tela dedicada se necessário.
+        .background(.thinMaterial) // [TRADE-OFF] Show only the first 3 URLs to avoid clutter; full detail can move to a dedicated screen if needed.
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -136,7 +136,7 @@ private struct LoadingDetailView: View {
     var body: some View {
         VStack(spacing: 8) {
             ProgressView()
-            Text("Carregando detalhes…")
+            Text(Strings.CharacterDetail.loading)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -152,13 +152,13 @@ private struct ErrorDetailView: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 42))
                 .foregroundStyle(.orange)
-            Text("Não foi possível carregar")
+            Text(Strings.CharacterDetail.errorTitle)
                 .font(.headline)
             Text(message)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-            Button("Tentar novamente", action: onRetry)
+            Button(Strings.Common.retryButton, action: onRetry)
                 .buttonStyle(.borderedProminent)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

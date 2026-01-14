@@ -1,4 +1,4 @@
-import Combine // [TRADE-OFF] Usamos Combine para observar busca/filtro e debouncar mudanças sem callbacks manuais.
+import Combine // [TRADE-OFF] Use Combine to observe search/filter and debounce changes without manual callbacks.
 import Foundation
 
 @MainActor
@@ -47,7 +47,7 @@ final class CharacterListViewModel: ObservableObject {
     }
 
     private func bindQueryChanges() {
-        // [TRADE-OFF] CombineLatest junta busca e filtro; removeDuplicates evita disparos com mesmo valor; debounce limita requisições rápidas, preferindo menor carga vs resposta imediata.
+        // [TRADE-OFF] CombineLatest pairs search and filter; removeDuplicates prevents repeated triggers; debounce throttles quick requests, preferring lower load over immediate response.
         Publishers.CombineLatest(
             $searchText.removeDuplicates(),
             $statusFilter.removeDuplicates()
@@ -67,7 +67,7 @@ final class CharacterListViewModel: ObservableObject {
     }
 
     private func fetchNextPage() {
-        // [TRADE-OFF] Paginação incremental: carregamos a próxima página apenas quando o último item aparece (infinite scroll), guardando o nextPage informado pelo backend; não há prefetch agressivo para manter simplicidade.
+        // [TRADE-OFF] Incremental pagination: load the next page only when the last item appears (infinite scroll) using the backend-provided nextPage; no aggressive prefetch to keep it simple.
         guard !isLoadingNextPage, let page = nextPage else { return }
         isLoadingNextPage = true
 
@@ -98,6 +98,6 @@ final class CharacterListViewModel: ObservableObject {
         if let apiError = error as? APIClientError, let description = apiError.errorDescription {
             return description
         }
-        return "Algo deu errado. Tente novamente."
+        return Strings.Errors.generic
     }
 }

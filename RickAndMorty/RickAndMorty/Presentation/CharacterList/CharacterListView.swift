@@ -15,7 +15,7 @@ struct CharacterListView: View {
                 content
             }
             .padding()
-            .navigationTitle("Personagens")
+            .navigationTitle(Strings.CharacterList.title)
         }
         .task {
             viewModel.loadInitial()
@@ -26,7 +26,7 @@ struct CharacterListView: View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(.secondary)
-            TextField("Buscar por nome", text: $viewModel.searchText)
+            TextField(Strings.CharacterList.searchPlaceholder, text: $viewModel.searchText)
                 .textInputAutocapitalization(.none)
                 .disableAutocorrection(true)
                 .submitLabel(.search)
@@ -37,7 +37,7 @@ struct CharacterListView: View {
     }
 
     private var statusFilter: some View {
-        Picker("Status", selection: $viewModel.statusFilter) {
+        Picker(Strings.CharacterList.statusPickerTitle, selection: $viewModel.statusFilter) {
             ForEach(CharacterStatusFilter.allCases) { status in
                 Text(status.displayName).tag(status)
             }
@@ -152,7 +152,7 @@ private struct LoadingStateView: View {
     var body: some View {
         VStack(spacing: 8) {
             ProgressView()
-            Text("Carregando personagens…")
+            Text(Strings.CharacterList.loading)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -166,9 +166,9 @@ private struct EmptyStateView: View {
             Image(systemName: "person.fill.questionmark")
                 .font(.system(size: 42))
                 .foregroundStyle(.secondary)
-            Text("Nenhum resultado")
+            Text(Strings.CharacterList.emptyTitle)
                 .font(.headline)
-            Text("Tente alterar a busca ou o filtro de status.")
+            Text(Strings.CharacterList.emptyMessage)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -185,13 +185,13 @@ private struct ErrorStateView: View {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 42))
                 .foregroundStyle(.orange)
-            Text("Algo deu errado")
+            Text(Strings.Common.genericErrorTitle)
                 .font(.headline)
             Text(message)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-            Button("Tentar novamente", action: onRetry)
+            Button(Strings.Common.retryButton, action: onRetry)
                 .buttonStyle(.borderedProminent)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

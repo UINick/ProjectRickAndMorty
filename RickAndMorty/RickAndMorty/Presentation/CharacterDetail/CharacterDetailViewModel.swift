@@ -1,4 +1,4 @@
-import Combine // [TRADE-OFF] Usamos Combine apenas para @Published/ObservableObject; fluxo principal é via Task async para simplificar.
+import Combine // [TRADE-OFF] Use Combine only for @Published/ObservableObject; the main flow relies on async Tasks to stay simple.
 import Foundation
 
 @MainActor
@@ -50,6 +50,6 @@ final class CharacterDetailViewModel: ObservableObject {
         if let apiError = error as? APIClientError, let description = apiError.errorDescription {
             return description
         }
-        return "Não foi possível carregar os detalhes."
+        return Strings.Errors.detailsUnavailable
     }
 }

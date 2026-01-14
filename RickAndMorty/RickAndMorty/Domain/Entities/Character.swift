@@ -5,7 +5,16 @@ enum CharacterStatus: String, Codable, Equatable {
     case dead = "Dead"
     case unknown = "unknown"
 
-    var displayName: String { rawValue }
+    var displayName: String {
+        switch self {
+        case .alive:
+            return Strings.Status.alive
+        case .dead:
+            return Strings.Status.dead
+        case .unknown:
+            return Strings.Status.unknown
+        }
+    }
 }
 
 enum CharacterStatusFilter: String, CaseIterable, Identifiable {
@@ -27,10 +36,14 @@ enum CharacterStatusFilter: String, CaseIterable, Identifiable {
 
     var displayName: String {
         switch self {
-        case .all: "Todos"
-        case .alive: "Alive"
-        case .dead: "Dead"
-        case .unknown: "Unknown"
+        case .all:
+            return Strings.Status.all
+        case .alive:
+            return Strings.Status.alive
+        case .dead:
+            return Strings.Status.dead
+        case .unknown:
+            return Strings.Status.unknown
         }
     }
 }

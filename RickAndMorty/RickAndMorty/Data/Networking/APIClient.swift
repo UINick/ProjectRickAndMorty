@@ -14,13 +14,13 @@ enum APIClientError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "URL inválida."
+            return Strings.Errors.invalidURL
         case .invalidResponse:
-            return "Resposta inesperada do servidor."
+            return Strings.Errors.invalidResponse
         case .statusCode(let code):
-            return "Erro na requisição (\(code))."
+            return Strings.Errors.statusCode(code)
         case .decoding:
-            return "Não foi possível ler os dados."
+            return Strings.Errors.decoding
         case .transport(let error):
             return error.localizedDescription
         }
@@ -82,7 +82,7 @@ struct DefaultAPIClient: APIClient {
             if let error = error as? APIClientError {
                 throw error
             }
-            throw APIClientError.transport(error) // [TRADE-OFF] Sem cache ou reintento aqui; simplicidade sobre resiliência (pode ser evoluído depois).
+            throw APIClientError.transport(error) // [TRADE-OFF] No cache or retry here; simplicity over resilience (can be evolved later).
         }
     }
 }

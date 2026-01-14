@@ -1,3 +1,10 @@
+//
+//  RickAndMortyApp.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 13/01/26.
+//
+
 import Foundation
 @testable import RickAndMorty
 
@@ -8,7 +15,7 @@ final class MockAPIClient: APIClient {
     }
 
     func get<T>(_ path: String, queryItems: [URLQueryItem]) async throws -> T where T : Decodable {
-        // [TRADE-OFF] Mock simples baseado no caminho da requisição; atende o caso de detalhe do personagem para construir testes de UI/ViewModel.
+        // [TRADE-OFF] Simple mock keyed by request path; covers the character detail case for UI/ViewModel tests.
         if path == "character/299" {
             let data = Data(Self.character299JSON.utf8)
             let decoder = JSONDecoder()

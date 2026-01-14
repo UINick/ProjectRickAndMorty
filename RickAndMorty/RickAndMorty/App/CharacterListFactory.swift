@@ -2,7 +2,7 @@ import SwiftUI
 
 enum CharacterListFactory {
     static func make() -> some View {
-        // [TRADE-OFF] Optamos por factories simples em vez de um contêiner de DI/global para manter o wiring explícito e local, mesmo recriando dependências ao abrir a tela.
+        // [TRADE-OFF] Chose simple factories instead of a global DI container to keep wiring explicit and local, even if dependencies are recreated when opening the screen.
         let apiClient = DefaultAPIClient()
         let repository = RemoteCharacterRepository(client: apiClient)
         let useCase = DefaultFetchCharactersUseCase(repository: repository)
