@@ -60,9 +60,7 @@ Tests replace implementations with stubs and mocks for full control.
 
 ---
 
-## Testing
-
-### Coverage
+## 🧪 Testing
 
 #### Presentation
 - ViewModel tests for success and error states
@@ -80,12 +78,9 @@ Tests replace implementations with stubs and mocks for full control.
 
 ## Observability & Security
 
-### Observability
 - State is observable via published properties
 - Errors are mapped to user-friendly messages
 - No logging or analytics implemented yet
-
-### Security
 - No token or sensitive data persistence
 - No hardcoded secrets
 
