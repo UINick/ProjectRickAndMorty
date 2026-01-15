@@ -14,12 +14,8 @@ The main goal was to deliver a clean, maintainable solution without over-enginee
 2. Select the `RickAndMorty` scheme
 3. Run on an iOS simulator (e.g. iPhone 15)
 
-## 🎥 Demo
-[demoVideo.mp4](ProjectRickAndMorty/demoVideo.mp4) *
-
 
 ## Architecture
-
 The project follows **Clean Architecture** to keep features easy to change and easy to test.
 
 ### Presentation
@@ -30,6 +26,7 @@ The project follows **Clean Architecture** to keep features easy to change and e
   - search
   - retry on error
 - UI state is exposed via published properties
+- Centralized string management using Xcode’s native string catalog
 
 ### Domain
 - Pure business logic
