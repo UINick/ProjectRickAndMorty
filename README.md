@@ -7,7 +7,7 @@ The main goal was to deliver a clean, maintainable solution without over-enginee
 
 ### Requirements
 - Xcode 15+
-- iOS 16+ simulator
+- iOS 17+ simulator
 
 ### Steps
 1. Open `RickAndMorty.xcodeproj`
@@ -15,7 +15,7 @@ The main goal was to deliver a clean, maintainable solution without over-enginee
 3. Run on an iOS simulator (e.g. iPhone 15)
 
 ## 🎥 Demo
-[demoVideo.mp4](demoVideo.mp4) *
+[demoVideo.mp4](ProjectRickAndMorty/demoVideo.mp4) *
 
 
 ## Architecture
