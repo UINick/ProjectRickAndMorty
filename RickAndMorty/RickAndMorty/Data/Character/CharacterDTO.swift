@@ -54,7 +54,7 @@ extension InfoDTO {
         )
     }
 
-    static func pageNumber(from urlString: String?) -> Int? {
+    nonisolated static func pageNumber(from urlString: String?) -> Int? {
         guard
             let urlString,
             let components = URLComponents(string: urlString),
