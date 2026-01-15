@@ -1,3 +1,10 @@
+//
+//  CharacterRepository.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 09/01/26.
+//
+
 import Foundation
 
 protocol CharacterRepository {

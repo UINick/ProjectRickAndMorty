@@ -1,8 +1,14 @@
+//
+//  CharacterDetailFactory.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 09/01/26.
+//
+
 import SwiftUI
 
 enum CharacterDetailFactory {
     static func make(characterID: Int) -> some View {
-        // [TRADE-OFF] Recreate the chain (client→repo→use case) for screen independence; extra object cost is acceptable for clarity and isolation.
         let apiClient = DefaultAPIClient()
         let repository = RemoteCharacterRepository(client: apiClient)
         let useCase = DefaultFetchCharacterDetailUseCase(repository: repository)

@@ -15,7 +15,6 @@ final class MockAPIClient: APIClient {
     }
 
     func get<T>(_ path: String, queryItems: [URLQueryItem]) async throws -> T where T : Decodable {
-        // [TRADE-OFF] Simple mock keyed by request path; covers the character detail case for UI/ViewModel tests.
         if path == "character/299" {
             let data = Data(Self.character299JSON.utf8)
             let decoder = JSONDecoder()

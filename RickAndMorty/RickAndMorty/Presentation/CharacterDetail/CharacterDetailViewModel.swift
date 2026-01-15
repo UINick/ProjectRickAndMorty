@@ -1,4 +1,11 @@
-import Combine // [TRADE-OFF] Use Combine only for @Published/ObservableObject; the main flow relies on async Tasks to stay simple.
+//
+//  CharacterDetailViewModel.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 10/01/26.
+//
+
+import Combine
 import Foundation
 
 @MainActor

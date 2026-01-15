@@ -1,4 +1,11 @@
-import Combine // [TRADE-OFF] Use Combine to observe search/filter and debounce changes without manual callbacks.
+//
+//  CharacterListViewModel.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 09/01/26.
+//
+
+import Combine
 import Foundation
 
 @MainActor
@@ -19,7 +26,7 @@ final class CharacterListViewModel: ObservableObject {
 
     private let fetchCharactersUseCase: FetchCharactersUseCase
     private var nextPage: Int? = 1
-    private var subscriptions = Set<AnyCancellable>() // [TRADE-OFF] Guardamos AnyCancellable para gerenciar ciclo de vida sem vazamentos.
+    private var subscriptions = Set<AnyCancellable>()
     private var loadTask: Task<Void, Never>?
     private let debounceInterval: RunLoop.SchedulerTimeType.Stride
 
@@ -47,7 +54,6 @@ final class CharacterListViewModel: ObservableObject {
     }
 
     private func bindQueryChanges() {
-        // [TRADE-OFF] CombineLatest pairs search and filter; removeDuplicates prevents repeated triggers; debounce throttles quick requests, preferring lower load over immediate response.
         Publishers.CombineLatest(
             $searchText.removeDuplicates(),
             $statusFilter.removeDuplicates()
@@ -67,7 +73,6 @@ final class CharacterListViewModel: ObservableObject {
     }
 
     private func fetchNextPage() {
-        // [TRADE-OFF] Incremental pagination: load the next page only when the last item appears (infinite scroll) using the backend-provided nextPage; no aggressive prefetch to keep it simple.
         guard !isLoadingNextPage, let page = nextPage else { return }
         isLoadingNextPage = true
 

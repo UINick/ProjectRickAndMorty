@@ -1,3 +1,10 @@
+//
+//  CharacterDetailView.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 10/01/26.
+//
+
 import SwiftUI
 
 struct CharacterDetailView: View {
@@ -127,7 +134,7 @@ struct CharacterDetailView: View {
             }
         }
         .padding()
-        .background(.thinMaterial) // [TRADE-OFF] Show only the first 3 URLs to avoid clutter; full detail can move to a dedicated screen if needed.
+        .background(.thinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }

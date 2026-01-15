@@ -1,3 +1,10 @@
+//
+//  FetchCharacterDetailUseCase.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 10/01/26.
+//
+
 import Foundation
 
 protocol FetchCharacterDetailUseCase {

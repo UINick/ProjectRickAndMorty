@@ -1,3 +1,10 @@
+//
+//  APIClient.swift
+//  RickAndMorty
+//
+//  Created by Nicholas Forte on 09/01/26.
+//
+
 import Foundation
 
 protocol APIClient {
@@ -57,16 +64,7 @@ struct DefaultAPIClient: APIClient {
 
         do {
             let (data, response) = try await session.data(for: request)
-#if DEBUG
-            debugPrint("[DEBUG][API] GET \(request.url?.absoluteString ?? "")")
-            if
-                let jsonObject = try? JSONSerialization.jsonObject(with: data),
-                let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
-                let jsonString = String(data: prettyData, encoding: .utf8)
-            {
-                debugPrint("[DEBUG][API] Response:\n\(jsonString)")
-            }
-#endif
+
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw APIClientError.invalidResponse
             }
@@ -82,7 +80,7 @@ struct DefaultAPIClient: APIClient {
             if let error = error as? APIClientError {
                 throw error
             }
-            throw APIClientError.transport(error) // [TRADE-OFF] No cache or retry here; simplicity over resilience (can be evolved later).
+            throw APIClientError.transport(error)
         }
     }
 }
