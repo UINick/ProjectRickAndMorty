@@ -96,8 +96,11 @@ final class CharacterListViewModelTests: XCTestCase {
         await Task.yield()
         await Task.yield()
 
+        XCTAssertEqual(sut.viewState, .content)
         XCTAssertEqual(sut.characters, filteredCharacters)
         XCTAssertEqual(useCase.invocations.count, 2)
+        XCTAssertEqual(useCase.invocations.map(\.page), [1, 1])
         XCTAssertEqual(useCase.invocations.last?.query.name, "Bird")
+        XCTAssertFalse(sut.isLoadingNextPage)
     }
 }
