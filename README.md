@@ -14,13 +14,6 @@ The main goal was to deliver a clean, maintainable solution without over-enginee
 2. Select the `RickAndMorty` scheme
 3. Run on an iOS simulator (e.g. iPhone 15)
 
-### Tests
-```bash
-xcodebuild test \
-  -scheme RickAndMorty \
-  -destination 'platform=iOS Simulator,name=iPhone 15'
-```
-
 ## 🎥 Demo
 [demoVideo.mp4](demoVideo.mp4) *
 
