@@ -4,7 +4,7 @@
 //
 //  Created by Nicholas Forte on 14/01/26.
 //
-import Combine
+
 import XCTest
 @testable import RickAndMorty
 
@@ -55,4 +55,3 @@ final class CharacterDetailViewModelTests: XCTestCase {
         XCTAssertEqual(failingUseCase.invocations, [11, 11])
     }
 }
-

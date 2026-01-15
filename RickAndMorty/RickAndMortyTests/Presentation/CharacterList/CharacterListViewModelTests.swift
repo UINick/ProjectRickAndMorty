@@ -1,5 +1,5 @@
 //
-//  CharacterViewModelTests.swift
+//  CharacterListViewModelTests.swift
 //  RickAndMortyTests
 //
 //  Created by Nicholas Forte on 14/01/26.
